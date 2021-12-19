@@ -6,9 +6,9 @@ function insertLink({ title, url }) {
   LinksCollection.insert({title, url, createdAt: new Date()});
 }
 
-// function insertTypePhone({name}){
-//   Type_of_phone_Collection.insert({name});
-// }
+function insertTypePhone({name}){
+  Type_of_phone_Collection.insert({name});
+}
 
 // function insertStreet({name}){
 //   Street_Collection.insert({name});
@@ -36,7 +36,7 @@ Meteor.startup(() => {
   //   });
 
   //   insertLink({
-  //     title: 'Follow the Guide',
+  //     title: 'Follow the Guide', 
   //     url: 'http://guide.meteor.com'
   //   });
 
@@ -52,16 +52,16 @@ Meteor.startup(() => {
 
   // }
 
-  // if (Type_of_phone_Collection.find().count() === 0){
-  //   insertTypePhone({
-  //     name:'mobile'
-  //   });
-  //   insertTypePhone({
-  //     name:'work'
-  //   });
-  //   insertTypePhone({
-  //     name:'home'
-  //   });
-  // }
+  if (Type_of_phone_Collection.find().count() === 0){
+    insertTypePhone({
+      name:'mobile'
+    });
+    insertTypePhone({
+      name:'work'
+    });
+    insertTypePhone({
+      name:'home'
+    });
+  }
   
 });

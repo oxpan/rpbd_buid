@@ -2,30 +2,9 @@ import { Meteor } from 'meteor/meteor';
 import { LinksCollection } from '/imports/api/links';
 import { Type_of_phone_Collection } from '/imports/api/phonebook';
 
-function insertLink({ title, url }) {
-  LinksCollection.insert({title, url, createdAt: new Date()});
-}
-
-// function insertTypePhone({name}){
-//   Type_of_phone_Collection.insert({name});
+// function insertLink({ title, url }) {
+//   LinksCollection.insert({title, url, createdAt: new Date()});
 // }
-
-// function insertStreet({name}){
-//   Street_Collection.insert({name});
-// }
-
-// function insertAddress({idStreet,home,appartment}){
-//   Address_Collection.insert({idStreet,home,appartment});
-// }
-
-// function insertPhoneNumber({idType,number}){
-//   PhoneNumber_Collection.insert({idType,number});
-// }
-
-// function insertPerson({idAddress,lastname,firstname,fathername}){
-//   Person_Collection.insert({idAddress,lastname,firstname,fathername});
-// }
-
 
 Meteor.startup(() => {
   // If the Links collection is empty, add some data.
@@ -51,17 +30,4 @@ Meteor.startup(() => {
   //   });
 
   // }
-
-  // if (Type_of_phone_Collection.find().count() === 0){
-  //   insertTypePhone({
-  //     name:'mobile'
-  //   });
-  //   insertTypePhone({
-  //     name:'work'
-  //   });
-  //   insertTypePhone({
-  //     name:'home'
-  //   });
-  // }
-  
 });

@@ -14,12 +14,20 @@ export const AddressForm = () => {
     const [apartment, setApartment] = useState("");
     const [stre, setStre] = useState("")
     const StreetBuff = useTracker(() => Street_Collection.find({}).fetch());
+    // console.log('grim' === StreetBuff.some(treet=><li key={treet._id}>{treet.name}</li>));
+
+    console.log(StreetBuff[2].name);
+    console.log("gog")
+    
 
     const onAddSumbit = e => {
         e.preventDefault();
 
         if (!home) return;
         if (!apartment) return;
+        if (!stre) return;
+
+        // if (stre === StreetBuff.name) return;
         
         Address_Collection.insert({
             idStreet: stre.trim(),
@@ -37,11 +45,11 @@ export const AddressForm = () => {
     
     return (
         <form className="address-form" onSubmit={onAddSumbit}>
-            {/* сюда нужно добавить выпадающий список с имеющими улицами */}
             <input
                 type={"text"}
                 placeholder='street'
                 list='st'
+                value={stre}
                 onChange={(e)=>setStre(e.target.value)}
                 />
             <datalist id="st">
@@ -63,7 +71,7 @@ export const AddressForm = () => {
             
            
 
-            <button type="submit">Add stret</button>
+            <button type="submit">Add street</button>
 
             {/* <ui>
                 {StreetBuff.map(street => <Street key={street._id} street={street} />)}

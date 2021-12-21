@@ -17,9 +17,9 @@ export const AddressForm = () => {
     const StreetBuff = useTracker(() => Street_Collection.find({}).fetch());
     // console.log('grim' === StreetBuff.some(treet=><li key={treet._id}>{treet.name}</li>));
 
-    console.log(StreetBuff[2].name);
-    console.log("gog")
-    console.log(StreetBuff[2]._id);
+    // console.log(StreetBuff[2].name);
+    // console.log("gog")
+    // console.log(StreetBuff[2]._id);
 
     // console.log(findBuff(StreetBuff,"gog"));
 
@@ -82,7 +82,7 @@ export const AddressForm = () => {
             
            
 
-            <button type="submit">Add street</button>
+            <button type="submit">Add address</button>
 
             {/* <ui>
                 {StreetBuff.map(street => <Street key={street._id} street={street} />)}

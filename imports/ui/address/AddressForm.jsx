@@ -1,6 +1,7 @@
 import { Mongo } from 'meteor/mongo'
 import React, { useState } from 'react';
 import { Address_Collection, Street_Collection } from '../../api/phonebook';
+import {findBuff} from '../../api/secondaryFunctions';
 
 import { useTracker } from 'meteor/react-meteor-data';
 import { StreetForm } from './Street/StreetForm';
@@ -18,6 +19,10 @@ export const AddressForm = () => {
 
     console.log(StreetBuff[2].name);
     console.log("gog")
+    console.log(StreetBuff[2]._id);
+
+    // console.log(findBuff(StreetBuff,"gog"));
+
     
 
     const onAddSumbit = e => {
@@ -27,10 +32,16 @@ export const AddressForm = () => {
         if (!apartment) return;
         if (!stre) return;
 
-        // if (stre === StreetBuff.name) return;
+        let idStreet;
+        for(let i = 0; i < StreetBuff.length;i++){
+            if (stre === StreetBuff[i].name){
+                idStreet = StreetBuff[i]._id;
+            }
+        }
+        // if (stre === StreetBuff.name) 
         
         Address_Collection.insert({
-            idStreet: stre.trim(),
+            idStreet: idStreet,
             home: home.trim(),
             apartment: apartment.trim()
         })

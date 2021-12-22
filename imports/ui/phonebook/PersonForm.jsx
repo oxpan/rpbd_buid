@@ -58,8 +58,10 @@ export const PersonForm = () => {
                         </div>
                         
                         <div>
-                        <p class="butp1"><input name='find' type={"radio"}/>поиск</p>
-                        <p class="butp2" ><input name='add' type={"radio"}/>добавить</p>
+                        <input name='radiob' type={"radio"} id='rad1'/>
+                        <label htmlFor="rad1">find</label>
+                        <input name='radiob' type={"radio"} id='rad2'/>
+                        <label htmlFor="rad2">create</label>
                         {/* <input id='find' type={"radio"} name='find'/> */}
                         <button type="submit">Исполнить</button>
                         </div>

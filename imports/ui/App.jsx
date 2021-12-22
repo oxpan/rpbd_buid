@@ -4,6 +4,7 @@ import { Info } from './Info.jsx';
 import { ListPersonShow } from './phonebook/ListPerson/ListPersonShow.jsx';
 import { PersonFind } from './phonebook/PersonFind.jsx';
 import { PersonForm } from './phonebook/PersonForm.jsx';
+import { menuInterface } from './ViewContrModel/menuInterface.jsx';
 
 export const App = () => (
   <div>
@@ -12,10 +13,15 @@ export const App = () => (
     {/* здесь будет поиск */}
     {/* <Hello/> */}
   
-    <PersonFind/>
-    <ListPersonShow/>
+    {/* <PersonFind/> */}
+    {/* <ListPersonShow/> */}
 
+    {/* <menuInterface/>
+     */}
+     {/* <menuInterface /> */}
     <PersonForm/>
+
+
     {/* <Info/> */}
   </div>
 );

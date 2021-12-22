@@ -15,7 +15,7 @@ export const App = () => (
     <PersonFind/>
     <ListPersonShow/>
 
-      <PersonForm/>
+    <PersonForm/>
     {/* <Info/> */}
   </div>
 );

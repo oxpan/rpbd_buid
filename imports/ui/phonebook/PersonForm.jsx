@@ -31,7 +31,6 @@ export const PersonForm = () => {
             firstname: firstName,
             fathername: fatherName
         })
-
     }
     return (
         
@@ -42,18 +41,6 @@ export const PersonForm = () => {
                 value={buffer}
                 onChange={(e) => setBuffer(e.target.value)}
                 />
-            {/* <input
-                type={"text"}
-                placeholder='ferstName'
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                />
-            <input
-                type={"text"}
-                placeholder='fatherName'
-                value={fatherName}
-                onChange={(e) => setFatherName(e.target.value)}
-                /> */}
             <button type="submit">Add person</button>
         </form>
     );

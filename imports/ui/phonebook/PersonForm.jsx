@@ -35,14 +35,93 @@ export const PersonForm = () => {
     }
     return (
         
-        <form className="person-insert-form" onSubmit={onAddSumbit}>
-            <input 
-                type={"text"}
-                placeholder='FIO:'
-                value={buffer}
-                onChange={(e) => setBuffer(e.target.value)}
-                />
-            <button type="submit">Add person</button>
+        <form className="person-insert-form" >
+            
+                <div className='person-form' /*onSubmit={onAddSumbit}*/>
+                    <span>
+                    <input 
+                        type={"text"}
+                        placeholder='FIO:'
+                        value={buffer}
+                        onChange={(e) => setBuffer(e.target.value)}
+                        />
+                    <input
+                        type={"text"}
+                        placeholder='PhoneNumber'
+                        />
+                    
+                    <input
+                        type={"text"}
+                        placeholder='Assress:'
+                        />
+                    <button >ФИО список</button>
+                    </span>
+                    <span> 
+                        <p class="butp1"><input name='find' type={"radio"}/>поиск</p>
+                        <p class="butp2" ><input name='add' type={"radio"}/>добавить</p>
+                        {/* <input id='find' type={"radio"} name='find'/> */}
+                        <button type="submit">Исполнить</button>
+                        <button >4 цыфры</button>
+                    </span>
+                </div>
+                <div>
+                <label>Данные адреса:</label>
+                    <div>
+                        
+                    <input 
+                            type={"text"}
+                            placeholder='street:'
+                            // value={buffer}
+                            // onChange={(e) => setBuffer(e.target.value)}
+                            />
+                        <input 
+                            type={"number"}
+                            placeholder='home:'
+                            // value={buffer}
+                            // onChange={(e) => setBuffer(e.target.value)}
+                            />
+                        <input 
+                            type={"number"}
+                            placeholder='apartment:'
+                            // value={buffer}
+                            // onChange={(e) => setBuffer(e.target.value)}
+                            />
+                    </div>
+                    <label>Номера:</label>
+                    <div>
+                    <input 
+                        type={"text"}
+                        placeholder='mobilePhone:'
+                        // value={buffer}
+                        // onChange={(e) => setBuffer(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                    <input 
+                        type={"text"}
+                        placeholder='workPhone:'
+                        // value={buffer}
+                        // onChange={(e) => setBuffer(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                    <input 
+                        type={"text"}
+                        placeholder='homePhone:'
+                        // value={buffer}
+                        // onChange={(e) => setBuffer(e.target.value)}
+                        />
+                    </div>
+                    
+                </div>
+
+                <div>
+                <button >обновить</button>
+                <button >удалить</button>
+                </div>
+                <div>
+                    <p>tut vivod</p>
+                </div>
         </form>
     );
     

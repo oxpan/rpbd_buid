@@ -38,8 +38,8 @@ export const PersonForm = () => {
         <form className="person-insert-form" >
             
                 <div className='person-form' /*onSubmit={onAddSumbit}*/>
-                    <span>
-                        <div class="div1">
+                    <span className='span1'>
+                        <div>
                     <input 
                         type={"text"}
                         placeholder='FIO:'

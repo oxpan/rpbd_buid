@@ -1,22 +1,33 @@
 import React from 'react';
 import { PhoneBook_Collection } from '../../../api/phonebook';
+import { ListAddress } from './ListAddress';
+import { useTracker } from 'meteor/react-meteor-data';
+import { ListPerson } from '../ListPerson/ListPerson';
+
+let currIndex;
+
+const current_index = ({_id}) => {
+    currIndex = _id;
+}
 
 export const ListAddressShow = () => {
 
-    if(PhoneBook_Collection.find({})){
-        console.log("BBBBB");
+    const cCollection = useTracker(() => PhoneBook_Collection.find().fetch());
+    cCollection.map(phonebook => <ListPerson key={phonebook._id} phonebook={phonebook} onMiniList={current_index}/>);
+    
+
+    const Collection = useTracker(() => PhoneBook_Collection.find(currIndex).fetch());
+    
+    console.log("BBBBB");
         return (
-            <div>
-                <p>BBBB</p>
+             <div>
+                <ol>
+                {Collection.map(phonebook => <ListAddress
+                key={phonebook._id} 
+                phonebook={phonebook}
+                />)}
+                </ol> 
             </div>
         )
-    }
-    else{
-        console.log("AAAAA");
-        return (
-            <div>
-                <p>AAAA</p>
-            </div>
-        )
-    }
+
 }

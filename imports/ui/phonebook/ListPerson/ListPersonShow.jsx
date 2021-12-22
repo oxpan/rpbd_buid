@@ -15,6 +15,7 @@ const deletePerson = ({_id}) => PhoneBook_Collection.remove(_id);
 export const ListPersonShow = () => {
 
     const Collection = useTracker(() => PhoneBook_Collection.find().fetch());
+    console.log(Collection);
 
     return (
         <div>
@@ -25,9 +26,12 @@ export const ListPersonShow = () => {
                 onDeleteClick={deletePerson}
                 // onViewClick={viewPersonAtributes}
                 />)}
-                
-                {/* <ListAddressShow/> */}
+                {/* <ol>
+                    <ListAddressShow/>
+                </ol> */}
 
+                    {/* <ListAddressShow/> */}
+                
             </ol>
         </div>
     )

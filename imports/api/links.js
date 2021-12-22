@@ -1,3 +1,2 @@
 import { Mongo } from 'meteor/mongo';
-
-export const LinksCollection = new Mongo.Collection('links');
+// этот файл я привотизировал в качестве хранилища флажков и других переменных. КОЛХОЗ 

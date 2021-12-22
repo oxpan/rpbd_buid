@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react/cjs/react.development';
 import { PhoneBook_Collection } from '../../api/phonebook';
-
+import { Mongo } from 'meteor/mongo';
 
 export const PersonForm = () => {
 
@@ -18,7 +18,7 @@ export const PersonForm = () => {
 
         const re = buffer.split(" ");
         if (re.length != 3 || re[2] === ""){
-            console.log("NOOOOOOOOOOOO!");
+            console.log("Error!");
             return;
         }         
         // console.log(re);
@@ -31,6 +31,11 @@ export const PersonForm = () => {
             firstname: firstName,
             fathername: fatherName
         })
+        // PhoneBook_Collection.addShard({
+        //     lastname: lastName,
+        //     firstname: firstName,
+        //     fathername: fatherName
+        // })
     }
     return (
         

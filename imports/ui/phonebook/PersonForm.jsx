@@ -26,16 +26,12 @@ export const PersonForm = () => {
         firstName = re[1];
         fatherName = re[2];
         
-        PhoneBook_Collection.insert({
-            lastname: lastName,
-            firstname: firstName,
-            fathername: fatherName
-        })
-        // PhoneBook_Collection.addShard({
+        // PhoneBook_Collection.insert({
         //     lastname: lastName,
         //     firstname: firstName,
         //     fathername: fatherName
         // })
+        
     }
     return (
         

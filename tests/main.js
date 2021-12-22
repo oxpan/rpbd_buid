@@ -10,6 +10,7 @@ describe("rpbd_buid012", function () {
     it("client is not server", function () {
       assert.strictEqual(Meteor.isServer, false);
     });
+    console.log("2222");
   }
 
   if (Meteor.isServer) {

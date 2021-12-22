@@ -8,7 +8,15 @@ export const PersonForm = () => {
     let lastName;
     let firstName;
     let fatherName;
+    let street;
+    let home;
+    let apartment;
+    let mobilePhone;
+    let workPhone;
+    let homePhone;
     const [buffer, setBuffer] = useState("");
+    const [bufferAddress, setBufferAddress] = useState("")
+
     
 
 
@@ -62,11 +70,10 @@ export const PersonForm = () => {
                         <label htmlFor="rad1">find</label>
                         <input name='radiob' type={"radio"} id='rad2'/>
                         <label htmlFor="rad2">create</label>
-                        {/* <input id='find' type={"radio"} name='find'/> */}
                         <button type="submit">Исполнить</button>
                         </div>
                     </span>
-                    <span> 
+                    <span className='span2'> 
                         <div>
                             <button >ФИО список</button>
                         </div>

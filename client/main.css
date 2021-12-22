@@ -6,3 +6,15 @@ body {
 /* span {
   display: block;
 } */
+span {
+  display:flexbox;
+}
+
+/* div {
+  display: block;
+} */
+
+/* .span2 {
+  position: static;
+  background: yellow;
+} */

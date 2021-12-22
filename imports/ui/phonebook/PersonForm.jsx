@@ -39,6 +39,7 @@ export const PersonForm = () => {
             
                 <div className='person-form' /*onSubmit={onAddSumbit}*/>
                     <span>
+                        <div class="div1">
                     <input 
                         type={"text"}
                         placeholder='FIO:'
@@ -54,14 +55,22 @@ export const PersonForm = () => {
                         type={"text"}
                         placeholder='Assress:'
                         />
-                    <button >ФИО список</button>
-                    </span>
-                    <span> 
+                        </div>
+                        
+                        <div>
                         <p class="butp1"><input name='find' type={"radio"}/>поиск</p>
                         <p class="butp2" ><input name='add' type={"radio"}/>добавить</p>
                         {/* <input id='find' type={"radio"} name='find'/> */}
                         <button type="submit">Исполнить</button>
-                        <button >4 цыфры</button>
+                        </div>
+                    </span>
+                    <span> 
+                        <div>
+                            <button >ФИО список</button>
+                        </div>
+                        <div>
+                            <button >4 цыфры</button>
+                        </div>
                     </span>
                 </div>
                 <div>

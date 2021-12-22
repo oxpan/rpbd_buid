@@ -6,3 +6,8 @@ body {
 /* span {
   display: block;
 } */
+
+#div1{
+  display: inline;
+  border: 1px solid #000;
+}

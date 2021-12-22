@@ -6,5 +6,6 @@ export const App = () => (
   <div>
     <h1>PhoneBook:</h1>
     <PersonForm/>
+    
   </div>
 );

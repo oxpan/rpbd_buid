@@ -4,16 +4,17 @@ import { useState } from 'react/cjs/react.development';
 export const PersonFind = () => {
 
 
-    const [lastName, setLastName] = useState("");
-    const [firstName, setFirstName] = useState("");
-    const [fatherName, setFatherName] = useState("");
+    // const [lastName, setLastName] = useState("");
+    // const [firstName, setFirstName] = useState("");
+    // const [fatherName, setFatherName] = useState("");
+    const [buffer,setBuffer] = useState("");
 
     const onFindSumbit = e => {
         e.preventDefault();
 
-        if (!lastName) return;
-        if (!firstName) return;
-        if (!fatherName) return;
+        // if (!lastName) return;
+        // if (!firstName) return;
+        // if (!fatherName) return;
 
         
     }
@@ -21,11 +22,11 @@ export const PersonFind = () => {
         <form className="person-find" onSubmit={onFindSumbit}>
             <input 
                 type={"text"}
-                placeholder='lastName:'
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
+                placeholder='text find:'
+                value={buffer}
+                onChange={(e) => setBuffer(e.target.value)}
                 />
-            <input
+            {/* <input
                 type={"text"}
                 placeholder='ferstName'
                 value={firstName}
@@ -36,8 +37,8 @@ export const PersonFind = () => {
                 placeholder='fatherName'
                 value={fatherName}
                 onChange={(e) => setFatherName(e.target.value)}
-                />
-            <button type="submit">Find person</button>
+                /> */}
+            <button type="submit">Find</button>
         </form>
     );
 

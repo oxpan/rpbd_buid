@@ -5,23 +5,31 @@ import { PhoneBook_Collection } from '../../api/phonebook';
 
 export const PersonForm = () => {
 
-    const [lastName, setLastName] = useState("");
-    const [firstName, setFirstName] = useState("");
-    const [fatherName, setFatherName] = useState("");
+    let lastName;
+    let firstName;
+    let fatherName;
+    const [buffer, setBuffer] = useState("");
+    
 
 
 
     const onAddSumbit = e => {
         e.preventDefault();
 
-        if (!lastName) return;
-        if (!firstName) return;
-        if (!fatherName) return;
-
+        const re = buffer.split(" ");
+        if (re.length != 3 || re[2] === ""){
+            console.log("NOOOOOOOOOOOO!");
+            return;
+        }         
+        // console.log(re);
+        lastName = re[0];
+        firstName = re[1];
+        fatherName = re[2];
+        
         PhoneBook_Collection.insert({
-            lastname: lastName.trim(),
-            firstname: firstName.trim(),
-            fathername: fatherName.trim()
+            lastname: lastName,
+            firstname: firstName,
+            fathername: fatherName
         })
 
     }
@@ -30,11 +38,11 @@ export const PersonForm = () => {
         <form className="person-insert-form" onSubmit={onAddSumbit}>
             <input 
                 type={"text"}
-                placeholder='lastName:'
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
+                placeholder='FIO:'
+                value={buffer}
+                onChange={(e) => setBuffer(e.target.value)}
                 />
-            <input
+            {/* <input
                 type={"text"}
                 placeholder='ferstName'
                 value={firstName}
@@ -45,7 +53,7 @@ export const PersonForm = () => {
                 placeholder='fatherName'
                 value={fatherName}
                 onChange={(e) => setFatherName(e.target.value)}
-                />
+                /> */}
             <button type="submit">Add person</button>
         </form>
     );

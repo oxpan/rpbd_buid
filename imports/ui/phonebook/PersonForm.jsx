@@ -17,7 +17,8 @@ export const PersonForm = () => {
     function Insert() {
         let IDcurrent;
 
-        const re = buffer.FIO.split(" ");
+        // const re = buffer.FIO.split(" ");
+        const re = fiopersone.value.split(" ");
         if (re.length != 3 || re[2] === ""){
             console.log("Error!");
             return;
@@ -57,9 +58,13 @@ export const PersonForm = () => {
         let Tmp_Person;
         var ObjectPerson = new Object();
 
-        const fio_buff = buffer.FIO.split(" ");
-        const address_buff = buffer.address.split(" ");
-        const phone_buff = buffer.phone.split(" ");
+        console.log(fiopersone.value);
+        // const fio_buff = buffer.FIO.split(" ");
+        const fio_buff = fiopersone.value.split(" ");
+        // const address_buff = buffer.address.split(" ");
+        const address_buff = addressa.value.split(" ");
+        // const phone_buff = buffer.phone.split(" ");
+        const phone_buff = phonenumber.value.split(" ");
         if (fio_buff.length != 3 || fio_buff[2] === ""){
             console.log("FIOError!");
             return;
@@ -84,10 +89,14 @@ export const PersonForm = () => {
             ObjectPerson.MobilePhone = phone_buff[1];
             Tmp_Person = PhoneBook_Collection.findOne(ObjectPerson);
         }else if (phone_buff[0] === "w"){
-
+            ObjectPerson.WorkPhone = phone_buff[1];
+            Tmp_Person = PhoneBook_Collection.findOne(ObjectPerson);
         }else {
-
+            ObjectPerson.HomePhone = phone_buff[1];
+            Tmp_Person = PhoneBook_Collection.findOne(ObjectPerson);
         }
+
+        console.log(Tmp_Person);
     }
 
 
@@ -114,6 +123,8 @@ export const PersonForm = () => {
         e.preventDefault();
         if (rad1.checked == false){
             Insert();
+        }else{
+            Find();
         }
         
     }
@@ -129,23 +140,26 @@ export const PersonForm = () => {
             <input 
                 type={"text"}
                 placeholder='FIO:'
-                value={buffer.FIO}
-                onChange={(e) => setBuffer({FIO:e.target.value})}
+                id='fiopersone'
+                // value={buffer.FIO}
+                // onChange={(e) => setBuffer({FIO:e.target.value})}
                 />
                 
             <input
                 // title='формат ввода [T X(XXX)XXX-XX-XX] T: mobile, work, home'
                 type={"text"}
                 placeholder='PhoneNumber'
-                value={buffer.phone}
-                onChange={(e) => setBuffer({phone:e.target.value})}
+                id='phonenumber'
+                // value={buffer.phone}
+                // onChange={(e) => setBuffer({phone:e.target.value})}
                 />
             
             <input
                 type={"text"}
                 placeholder='Assress:'
-                value={buffer.address}
-                onChange={(e) => setBuffer({address:e.target.value})}
+                id='addressa'
+                // value={buffer.address}
+                // onChange={(e) => setBuffer({address:e.target.value})}
                 />
                 {/* </div> */}
                 

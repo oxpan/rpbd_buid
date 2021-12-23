@@ -156,7 +156,22 @@ export const PersonForm = () => {
         function PrintContact(props)
         {
             return(
-                    <li>{props.Lastname} {props.Firstname} {props.Fathername} </li>
+                    <li>
+                        <div>
+                            {props.Lastname} {props.Firstname} {props.Fathername}
+                        </div>
+                        <div>
+                            <ul>
+                                {props.MobilePhone}
+                            </ul>
+                            <ul>
+                                {props.WorkPhone}
+                            </ul>
+                            <ul>
+                                {props.HomePhone}
+                            </ul>
+                        </div>
+                    </li>
             );
         }
         

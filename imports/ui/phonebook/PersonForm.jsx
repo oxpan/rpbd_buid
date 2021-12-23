@@ -169,117 +169,101 @@ export const PersonForm = () => {
                             id='fiopersone'
                             />
                 
-            <input
-                // title='формат ввода [T X(XXX)XXX-XX-XX] T: mobile, work, home'
-                type={"text"}
-                placeholder='PhoneNumber'
-                id='phonenumber'
-                // value={buffer.phone}
-                // onChange={(e) => setBuffer({phone:e.target.value})}
-                />
-            
-            <input
-                type={"text"}
-                placeholder='Assress:'
-                id='addressa'
-                // value={buffer.address}
-                // onChange={(e) => setBuffer({address:e.target.value})}
-                />
-                {/* </div> */}
+                        <input
+                            title='формат ввода [T X(XXX)XXX-XX-XX] T: mobile, work, home'
+                            type={"text"}
+                            placeholder='PhoneNumber'
+                            id='phonenumber'
+                            />
+
+                        <input
+                            type={"text"}
+                            placeholder='Assress:'
+                            id='addressa'
+                            />
+               
+                        <input name='radiob' type={"radio"} id='rad1'/>
+                        <label htmlFor="rad1">find</label>
+                        <input name='radiob' type={"radio"} id='rad2'/>
+                        <label htmlFor="rad2">create</label>
                 
-                {/* <div> */}
-                <input name='radiob' type={"radio"} id='rad1'/>
-                <label htmlFor="rad1">find</label>
-                <input name='radiob' type={"radio"} id='rad2'/>
-                <label htmlFor="rad2">create</label>
-                
-                {/* </div> */}
-                <button type="submit" onClick={ExecuteHandler}>Исполнить</button>
-                 </form>
-            </span>
-           
-
-
-            <span className='span2'> 
-                <div>
-                    <button >ФИО список</button>
-                </div>
-                <div>
-                    <button >4 цифры</button>
-                </div>
-            </span>
-        </div>
-        <div>
-        <label>ФИО:</label>
-        <div>
-            <input type="text"
-            placeholder='lastname'
-            // value={lastNOut}
-            id='lastn'
-            />
-            <input type="text"
-            placeholder='firstname'
-            // value={firsNOut}
-            id='firstn'
-            />
-            <input type="text"
-            placeholder='fathername'
-            // value={fatherNOut}
-            id='fathern'
-            />
-
-        </div>
-
-        <label>Данные адреса:</label>
+                        <button type="submit" onClick={ExecuteHandler}>Исполнить</button>
+                    </form>
+                </span>
+                <span className='span2'> 
+                    <div>
+                        <button >ФИО список</button>
+                    </div>
+                    <div>
+                        <button >4 цифры</button>
+                    </div>
+                </span>
+            </div>
             <div>
-                
-            <input 
-                    type={"text"}
-                    placeholder='street:'
-                    id='streetAddress'
+                <label>ФИО:</label>
+                <div>
+                    <input type="text"
+                        placeholder='lastname'
+                        id='lastn'
+                        />
+            
+                    <input type="text"
+                        placeholder='firstname'
+                        id='firstn'
+                        />
                     
-                    />
-                <input 
-                    type={"number"}
-                    placeholder='home:'
-                    id='homeAddress'
-                    />
-                <input 
-                    type={"number"}
-                    placeholder='apartment:'
-                    id='apartmentAddress'
-                    />
-            </div>
-            <label>Номера:</label>
-            <div>
-            <input 
-                type={"text"}
-                placeholder='mobilePhone:'
-                id='mobileP'
-                />
-            </div>
-            <div>
-            <input 
-                type={"text"}
-                placeholder='workPhone:'
-                id='workP'
-                />
-            </div>
-            <div>
-            <input 
-                type={"text"}
-                placeholder='homePhone:'
-                id='homeP'
-                />
-            </div>
-            
-        </div>
+                    <input type="text"
+                        placeholder='fathername'
+                        id='fathern'
+                        />
 
-        <div>
-        <button onClick={reade} >обновить</button>
-        <button onClick={remove} >удалить</button>
+                </div>
+
+                <label>Данные адреса:</label>
+                <div>   
+                    <input 
+                        type={"text"}
+                        placeholder='street:'
+                        id='streetAddress'
+                        />
+                    <input 
+                        type={"number"}
+                        placeholder='home:'
+                        id='homeAddress'
+                        />
+                    <input 
+                        type={"number"}
+                        placeholder='apartment:'
+                        id='apartmentAddress'
+                        />
+                </div>
+                <label>Номера:</label>
+                <div>
+                    <input 
+                        type={"text"}
+                        placeholder='mobilePhone:'
+                        id='mobileP'
+                        />
+                </div>
+                <div>
+                    <input 
+                        type={"text"}
+                        placeholder='workPhone:'
+                        id='workP'
+                        />
+                </div>
+                <div>
+                    <input 
+                        type={"text"}
+                        placeholder='homePhone:'
+                        id='homeP'
+                        />
+                </div> 
+            </div>
+            <div>
+                <button onClick={reade} >обновить</button>
+                <button onClick={remove} >удалить</button>
+            </div>
         </div>
-</div>
     );
-    
 };

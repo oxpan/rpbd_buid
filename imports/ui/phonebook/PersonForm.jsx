@@ -9,11 +9,9 @@ export const PersonForm = () => {
     let firstName;
     let fatherName;
     let street;
-    let home;
-    let apartment;
-    let mobilePhone;
-    let workPhone;
-    let homePhone;
+    let homeA;
+    let apartmentA;
+    let phone;
     let type;
     const [buffer, setBuffer] = useState({FIO:"",phone:"",address:""});
     
@@ -28,20 +26,22 @@ export const PersonForm = () => {
         const reA = bufferAddress.split(" ");
         const reP = bufferPhone.split(" ");
         if (re.length != 3 || re[2] === ""){
-            console.log("Error!");
+            console.log("PersonError!");
             return;
         }         
-        // console.log(re);
-        lastName = re[0];
-        firstName = re[1];
-        fatherName = re[2];
-
-
-        // PhoneBook_Collection.insert({
-        //     lastname: lastName,
-        //     firstname: firstName,
-        //     fathername: fatherName
-        // })
+      
+        PhoneBook_Collection.insert({
+            lastname: re[0],
+            firstname: re[1],
+            fathername: re[2],
+            home: "",
+            apartment: "",
+            street: "",
+            mobilePhone: "",
+            workPhone: "",
+            homePhone: ""
+        
+        })
         
     }
     return (
@@ -49,8 +49,9 @@ export const PersonForm = () => {
         <form className="person-insert-form" >
             
                 <div className='person-form' /*onSubmit={onAddSumbit}*/>
-                    <span className='span1' onSubmit={onAddSumbit}>
-                        <div>
+                    {/* <span className='span1' onSubmit={onAddSumbit}> */}
+                        {/* <div> */}
+                        <form onSubmit={onAddSumbit}>
                     <input 
                         type={"text"}
                         placeholder='FIO:'
@@ -58,7 +59,7 @@ export const PersonForm = () => {
                         onChange={(e) => setBuffer(e.target.value)}
                         />
                     <input
-                        // title='формат ввода [T X(XXX)XXX-XX-XX] T: m - mobile, w - work, h - home'
+                        // title='формат ввода [T X(XXX)XXX-XX-XX] T: mobile, work, home'
                         type={"text"}
                         placeholder='PhoneNumber'
                         value={buffer.phone}
@@ -71,16 +72,19 @@ export const PersonForm = () => {
                         value={buffer.address}
                         onClick={(e) => setBuffer(e.target.value)}
                         />
-                        </div>
+                        {/* </div> */}
                         
-                        <div>
+                        {/* <div> */}
                         <input name='radiob' type={"radio"} id='rad1'/>
                         <label htmlFor="rad1">find</label>
                         <input name='radiob' type={"radio"} id='rad2'/>
                         <label htmlFor="rad2">create</label>
                         <button type="submit">Исполнить</button>
-                        </div>
-                    </span>
+                        {/* </div> */}
+                    {/* </span> */}
+                    </form>
+
+                    
                     <span className='span2'> 
                         <div>
                             <button >ФИО список</button>

@@ -14,17 +14,19 @@ export const PersonForm = () => {
     let mobilePhone;
     let workPhone;
     let homePhone;
-    const [buffer, setBuffer] = useState("");
-    const [bufferAddress, setBufferAddress] = useState("")
-
+    let type;
+    const [buffer, setBuffer] = useState({FIO:"",phone:"",address:""});
     
-
-
+    
 
     const onAddSumbit = e => {
         e.preventDefault();
 
+        console.log(bufferPhone);
+
         const re = buffer.split(" ");
+        const reA = bufferAddress.split(" ");
+        const reP = bufferPhone.split(" ");
         if (re.length != 3 || re[2] === ""){
             console.log("Error!");
             return;
@@ -33,7 +35,8 @@ export const PersonForm = () => {
         lastName = re[0];
         firstName = re[1];
         fatherName = re[2];
-        
+
+
         // PhoneBook_Collection.insert({
         //     lastname: lastName,
         //     firstname: firstName,
@@ -46,22 +49,27 @@ export const PersonForm = () => {
         <form className="person-insert-form" >
             
                 <div className='person-form' /*onSubmit={onAddSumbit}*/>
-                    <span className='span1'>
+                    <span className='span1' onSubmit={onAddSumbit}>
                         <div>
                     <input 
                         type={"text"}
                         placeholder='FIO:'
-                        value={buffer}
+                        value={buffer.FIO}
                         onChange={(e) => setBuffer(e.target.value)}
                         />
                     <input
+                        // title='формат ввода [T X(XXX)XXX-XX-XX] T: m - mobile, w - work, h - home'
                         type={"text"}
                         placeholder='PhoneNumber'
+                        value={buffer.phone}
+                        onClick={(e) => setBuffer(e.target.value)}
                         />
                     
                     <input
                         type={"text"}
                         placeholder='Assress:'
+                        value={buffer.address}
+                        onClick={(e) => setBuffer(e.target.value)}
                         />
                         </div>
                         
@@ -78,7 +86,7 @@ export const PersonForm = () => {
                             <button >ФИО список</button>
                         </div>
                         <div>
-                            <button >4 цыфры</button>
+                            <button >4 цифры</button>
                         </div>
                     </span>
                 </div>

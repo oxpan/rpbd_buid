@@ -10,21 +10,15 @@ export const PersonForm = () => {
     let lastName;
     let firstName;
     let fatherName;
-    const [buffer, setBuffer] = useState({FIO:"",phone:"",address:""});
+    const [buffer, setBuffer] = useState({FIO:"",phone:"",address:""});//Drop
     
-
-
-
     function Insert() {
         let IDcurrent;
-
-        // const re = buffer.FIO.split(" ");
         const re = fiopersone.value.split(" ");
         if (re.length != 3 || re[2] === ""){
             console.log("Error!");
             return;
         }         
-        // console.log(re);
         lastName = re[0];
         firstName = re[1];
         fatherName = re[2];
@@ -51,21 +45,15 @@ export const PersonForm = () => {
         }
 
         Session.set('currentPerson', Person);
-        // var sessionDataToLog = Session.get('currentPerson');
-        // console.log(sessionDataToLog);
         filler();
     }
 
     function Find(){
         let Tmp_Person;
         var ObjectPerson = new Object();
-
         console.log(fiopersone.value);
-        // const fio_buff = buffer.FIO.split(" ");
         const fio_buff = fiopersone.value.split(" ");
-        // const address_buff = buffer.address.split(" ");
         const address_buff = addressa.value.split(" ");
-        // const phone_buff = buffer.phone.split(" ");
         const phone_buff = phonenumber.value.split(" ");
         if (fio_buff.length != 3 || fio_buff[2] === ""){
             console.log("FIOError!");
@@ -103,14 +91,34 @@ export const PersonForm = () => {
 
     const reade = e => {
         e.preventDefault();
-        console.log("read");
-
+        console.log("<reade>");
+        var sessionDataToLog = Session.get('currentPerson');
+        
+        PhoneBook_Collection.update({"_id":sessionDataToLog._id},
+                                            {"$set":{
+                                                Lastname:lastn.value.trim(),
+                                                Firstname:firstn.value.trim(),
+                                                Fathername:fathern.value.trim(),
+                                                Street:streetAddress.value.trim(),
+                                                Home:homeAddress.value.trim(),
+                                                Appartement:apartmentAddress.value.trim(),
+                                                MobilePhone:mobileP.value.trim(),
+                                                WorkPhone: workP.value.trim(),
+                                                HomePhone: homeP.value.trim()
+                                            }})
+        
+        console.log("</reade>");
     }
     const remove = e => {
         e.preventDefault();
-        console.log("remove");
+        console.log("<remove>");
         var sessionDataToLog = Session.get('currentPerson');
         PhoneBook_Collection.remove(sessionDataToLog._id);
+        ClearTextFiler();
+        console.log("</remove>");
+    }
+
+    function ClearTextFiler(){
         lastn.value = "";
         firstn.value = "";
         fathern.value = ""; 
@@ -120,7 +128,6 @@ export const PersonForm = () => {
         mobileP.value = ""; 
         workP.value = "";
         homeP.value = "";
-
     }
 
     function filler(){
@@ -128,8 +135,7 @@ export const PersonForm = () => {
         var firsNOut = "";
         var fatherNOut = "";
         var sessionDataToLog = Session.get('currentPerson');
-        // console.log(sessionDataToLog);
-
+    
         lastn.value = sessionDataToLog.Lastname;
         firstn.value = sessionDataToLog.Firstname;
         fathern.value = sessionDataToLog.Fathername;
@@ -149,7 +155,6 @@ export const PersonForm = () => {
         }else{
             Find();
         }
-        
     }
 
         //пока что только ФИО
@@ -160,17 +165,17 @@ export const PersonForm = () => {
                         <div>
                             {props.Lastname} {props.Firstname} {props.Fathername}
                         </div>
-                        <div>
-                            <ul>
-                                {props.MobilePhone}
-                            </ul>
-                            <ul>
-                                {props.WorkPhone}
-                            </ul>
-                            <ul>
-                                {props.HomePhone}
-                            </ul>
-                        </div>
+                        <ul>
+                            <li>
+                                Мобильный телефон: {props.MobilePhone}
+                            </li>
+                            <li>
+                                Рабочий телефон: {props.WorkPhone}
+                            </li>
+                            <li>
+                                Домашний телефон: {props.HomePhone}
+                            </li>
+                        </ul>
                     </li>
             );
         }
@@ -211,134 +216,112 @@ export const PersonForm = () => {
         }
 
     return (
-        
         <div className="person-insert-form" >
-            
-        <div className='person-form' /*onSubmit={onAddSumbit}*/>
-            <span className='span1' >
-                {/* <div> */}
-                <form>
-            <input 
-                type={"text"}
-                placeholder='FIO:'
-                id='fiopersone'
-                // value={buffer.FIO}
-                // onChange={(e) => setBuffer({FIO:e.target.value})}
-                />
+            <div className='person-form'>
+                <span className='span1' >
+                    <form>
+                        <input 
+                            type={"text"}
+                            placeholder='FIO:'
+                            id='fiopersone'
+                            />
                 
-            <input
-                // title='формат ввода [T X(XXX)XXX-XX-XX] T: mobile, work, home'
-                type={"text"}
-                placeholder='PhoneNumber'
-                id='phonenumber'
-                // value={buffer.phone}
-                // onChange={(e) => setBuffer({phone:e.target.value})}
-                />
-            
-            <input
-                type={"text"}
-                placeholder='Assress:'
-                id='addressa'
-                // value={buffer.address}
-                // onChange={(e) => setBuffer({address:e.target.value})}
-                />
-                {/* </div> */}
+                        <input
+                            title='формат ввода [T X(XXX)XXX-XX-XX] T: mobile, work, home'
+                            type={"text"}
+                            placeholder='PhoneNumber'
+                            id='phonenumber'
+                            />
+
+                        <input
+                            type={"text"}
+                            placeholder='Assress:'
+                            id='addressa'
+                            />
+               
+                        <input name='radiob' type={"radio"} id='rad1'/>
+                        <label htmlFor="rad1">find</label>
+                        <input name='radiob' type={"radio"} id='rad2'/>
+                        <label htmlFor="rad2">create</label>
                 
-                {/* <div> */}
-                <input name='radiob' type={"radio"} id='rad1'/>
-                <label htmlFor="rad1">find</label>
-                <input name='radiob' type={"radio"} id='rad2'/>
-                <label htmlFor="rad2">create</label>
-                
-                {/* </div> */}
-                <button type="submit" onClick={ExecuteHandler}>Исполнить</button>
-                 </form>
-            </span>
-           
-
-
-            <span className='span2'> 
-                <div>
-                    <button onClick={FindFIOALL}>ФИО список</button>
-                </div>
-                <div>
-                    <button >4 цифры</button>
-                </div>
-            </span>
-        </div>
-        <div>
-        <label>ФИО:</label>
-        <div>
-            <input type="text"
-            placeholder='lastname'
-            // value={lastNOut}
-            id='lastn'
-            />
-            <input type="text"
-            placeholder='firstname'
-            // value={firsNOut}
-            id='firstn'
-            />
-            <input type="text"
-            placeholder='fathername'
-            // value={fatherNOut}
-            id='fathern'
-            />
-
-        </div>
-
-        <label>Данные адреса:</label>
+                        <button type="submit" onClick={ExecuteHandler}>Исполнить</button>
+                    </form>
+                </span>
+                <span className='span2'> 
+                    <div>
+                        <button onClick={FindFIOALL} >ФИО список</button>
+                    </div>
+                    <div>
+                        <button >4 цифры</button>
+                    </div>
+                </span>
+            </div>
             <div>
-                
-            <input 
-                    type={"text"}
-                    placeholder='street:'
-                    id='streetAddress'
+                <label>ФИО:</label>
+                <div>
+                    <input type="text"
+                        placeholder='lastname'
+                        id='lastn'
+                        />
+            
+                    <input type="text"
+                        placeholder='firstname'
+                        id='firstn'
+                        />
                     
-                    />
-                <input 
-                    type={"number"}
-                    placeholder='home:'
-                    id='homeAddress'
-                    />
-                <input 
-                    type={"number"}
-                    placeholder='apartment:'
-                    id='apartmentAddress'
-                    />
-            </div>
-            <label>Номера:</label>
-            <div>
-            <input 
-                type={"text"}
-                placeholder='mobilePhone:'
-                id='mobileP'
-                />
-            </div>
-            <div>
-            <input 
-                type={"text"}
-                placeholder='workPhone:'
-                id='workP'
-                />
-            </div>
-            <div>
-            <input 
-                type={"text"}
-                placeholder='homePhone:'
-                id='homeP'
-                />
-            </div>
-            
-        </div>
+                    <input type="text"
+                        placeholder='fathername'
+                        id='fathern'
+                        />
 
-        <div>
-            <button onClick={reade} >обновить</button>
-            <button onClick={remove} >удалить</button>
+                </div>
+
+                <label>Данные адреса:</label>
+                <div>   
+                    <input 
+                        type={"text"}
+                        placeholder='street:'
+                        id='streetAddress'
+                        />
+                    <input 
+                        type={"number"}
+                        placeholder='home:'
+                        id='homeAddress'
+                        />
+                    <input 
+                        type={"number"}
+                        placeholder='apartment:'
+                        id='apartmentAddress'
+                        />
+                </div>
+                <label>Номера:</label>
+                <div>
+                    <input 
+                        type={"text"}
+                        placeholder='mobilePhone:'
+                        id='mobileP'
+                        />
+                </div>
+                <div>
+                    <input 
+                        type={"text"}
+                        placeholder='workPhone:'
+                        id='workP'
+                        />
+                </div>
+                <div>
+                    <input 
+                        type={"text"}
+                        placeholder='homePhone:'
+                        id='homeP'
+                        />
+                </div> 
+            </div>
+            <div>
+                <button onClick={reade} >обновить</button>
+                <button onClick={remove} >удалить</button>
+            </div>
+            <div id="out"></div>
         </div>
-        <div id = "out">
-        </div>
-</div>
     );
-    
 };

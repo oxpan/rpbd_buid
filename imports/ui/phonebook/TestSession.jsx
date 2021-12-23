@@ -26,16 +26,24 @@ export const TestSession = () => {
     const onAddSumbit = e => {
         e.preventDefault();
     
-        
+        const re = buffer.split(" ");
+        if (re.length != 3 || re[2] === ""){
+            console.log("Error!");
+            return;
+        }         
+        // console.log(re);
+        lastName = re[0];
+        firstName = re[1];
+        fatherName = re[2];
 
 
         // 
         
-        // PhoneBook_Collection.insert({
-        //     lastname: lastName,
-        //     firstname: firstName,
-        //     fathername: fatherName
-        // })
+        PhoneBook_Collection.insert({
+            lastname: lastName,
+            firstname: firstName,
+            fathername: fatherName
+        })
         // PhoneBook_Collection.addShard({
         //     lastname: lastName,
         //     firstname: firstName,

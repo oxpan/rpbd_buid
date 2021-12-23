@@ -111,6 +111,7 @@ export const PersonForm = () => {
         e.preventDefault();
         console.log("<reade>");
         var sessionDataToLog = Session.get('currentPerson');
+        if(sessionDataToLog === undefined) return;
         
         PhoneBook_Collection.update({"_id":sessionDataToLog._id},
                                             {"$set":{
@@ -131,6 +132,8 @@ export const PersonForm = () => {
         e.preventDefault();
         console.log("<remove>");
         var sessionDataToLog = Session.get('currentPerson');
+        if(sessionDataToLog === undefined) return;
+        
         PhoneBook_Collection.remove(sessionDataToLog._id);
         ClearTextFiler();
         console.log("</remove>");

@@ -2,26 +2,25 @@ import React from 'react';
 import { useState } from 'react/cjs/react.development';
 import { PhoneBook_Collection } from '../../api/phonebook';
 import { Mongo } from 'meteor/mongo';
+import { Session } from 'meteor/session';
 
 export const PersonForm = () => {
 
     let lastName;
     let firstName;
     let fatherName;
-    const [buffer, setBuffer] = useState("");
+    const [buffer, setBuffer] = useState({FIO:"",phone:"",address:""});
     
 
 
 
-    const onAddSumbit = e => {
-        e.preventDefault();
-
-        const re = buffer.split(" ");
+    function Insert() {
+        const re = buffer.FIO.split(" ");
         if (re.length != 3 || re[2] === ""){
             console.log("Error!");
             return;
         }         
-        // console.log(re);
+        console.log(re);
         lastName = re[0];
         firstName = re[1];
         fatherName = re[2];
@@ -30,13 +29,63 @@ export const PersonForm = () => {
             lastname: lastName,
             firstname: firstName,
             fathername: fatherName
-        })
+        });
+
+
+
+        var Person = {
+            Lastname: re[0],
+            Firstname: re[1],
+            Fathername: re[2],
+            Home: "",
+            Appartement: "",
+            Street: "",
+            MobilePhone: "",
+            WorkPhone:"",
+            HomePhone:""
+        }
+        Session.set('currentPerson', Person);
+        // var sessionDataToLog = Session.get('currentPerson');
+        // console.log(sessionDataToLog);
     }
 
-    function ExecuteHandler()
-    {
-        console.log(rad1.checked());
-        console.log(rad2.checked());
+    function Find(){
+        const fio_buff = buffer.FIO.split(" ");
+        const address_buff = buffer.address.split(" ");
+        const phone_buff = buffer.phone.split(" ");
+        if (fio_buff.length != 3 || fio_buff[2] === ""){
+            console.log("FIOError!");
+            return;
+        }
+        if (address_buff.length != 3 || address_buff[2] === ""){
+            console.log("addressError!");
+            return;
+        }
+        if (phone_buff.length != 2 || phone_buff[1] === ""){
+            console.log("phoneError!");
+            return;
+        }
+
+        if(phone_buff[0] === "m"){
+
+        }else if (phone_buff[0] === "w"){
+
+        }else {
+
+        }
+    }
+
+
+    function filler(){
+        
+    }
+
+    const ExecuteHandler = e => {
+        e.preventDefault();
+        if (rad1.checked == false){
+            Insert();
+        }
+        
     }
 
     return (
@@ -46,12 +95,12 @@ export const PersonForm = () => {
         <div className='person-form' /*onSubmit={onAddSumbit}*/>
             <span className='span1' >
                 {/* <div> */}
-                <form onSubmit={onAddSumbit}>
+                <form>
             <input 
                 type={"text"}
                 placeholder='FIO:'
                 value={buffer.FIO}
-                onChange={(e) => setBuffer(e.target.value)}
+                onChange={(e) => setBuffer({FIO:e.target.value})}
                 />
                 
             <input
@@ -59,14 +108,14 @@ export const PersonForm = () => {
                 type={"text"}
                 placeholder='PhoneNumber'
                 value={buffer.phone}
-                onClick={(e) => setBuffer(e.target.value)}
+                onChange={(e) => setBuffer({phone:e.target.value})}
                 />
             
             <input
                 type={"text"}
                 placeholder='Assress:'
                 value={buffer.address}
-                onClick={(e) => setBuffer(e.target.value)}
+                onChange={(e) => setBuffer({address:e.target.value})}
                 />
                 {/* </div> */}
                 

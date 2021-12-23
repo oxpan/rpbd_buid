@@ -3,6 +3,7 @@ import { useState } from 'react/cjs/react.development';
 import { PhoneBook_Collection } from '../../api/phonebook';
 import { Mongo } from 'meteor/mongo';
 import { Session } from 'meteor/session';
+import { render } from 'react-dom';
 
 export const PersonForm = () => {
 
@@ -48,6 +49,7 @@ export const PersonForm = () => {
             WorkPhone:"",
             HomePhone:""
         }
+
         Session.set('currentPerson', Person);
         // var sessionDataToLog = Session.get('currentPerson');
         // console.log(sessionDataToLog);
@@ -150,6 +152,49 @@ export const PersonForm = () => {
         
     }
 
+        //пока что только ФИО
+        function PrintContact(props)
+        {
+            return(
+                    <li>{props.Lastname} {props.Firstname} {props.Fathername} </li>
+            );
+        }
+        
+        function GenListContacts(props)
+        {
+            let elements = new Array();
+            
+            for(let i=0;i<props.length;i++)
+                elements.push(PrintContact(props[i]));
+            
+            return  elements;
+
+        }
+    
+        function FindFIOALL()
+        {
+            const re = fiopersone.value.split(" ");
+            if (re.length != 3 || re[2] === ""){
+                console.log("Error!");
+                return;
+            }            
+            
+            obj = new Object();
+            obj.Lastname = re[0];
+            obj.Firstname = re[1];
+            obj.Fathername = re[2];
+    
+            collection = PhoneBook_Collection.find(obj).fetch();
+
+            console.log(obj);
+            console.log(collection);
+    
+            //render(PrintContact(collection[0]),document.getElementById('out'));
+            
+            let res = GenListContacts(collection);
+            render(<ol>{res}</ol>, document.getElementById('out'));
+        }
+
     return (
         
         <div className="person-insert-form" >
@@ -199,7 +244,7 @@ export const PersonForm = () => {
 
             <span className='span2'> 
                 <div>
-                    <button >ФИО список</button>
+                    <button onClick={FindFIOALL}>ФИО список</button>
                 </div>
                 <div>
                     <button >4 цифры</button>
@@ -273,11 +318,10 @@ export const PersonForm = () => {
         </div>
 
         <div>
-        <button onClick={reade} >обновить</button>
-        <button onClick={remove} >удалить</button>
+            <button onClick={reade} >обновить</button>
+            <button onClick={remove} >удалить</button>
         </div>
-        <div>
-            <p>FFFFFFFFFFFFFFFuckk</p>
+        <div id = "out">
         </div>
 </div>
     );

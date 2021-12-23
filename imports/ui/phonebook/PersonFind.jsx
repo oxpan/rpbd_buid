@@ -4,17 +4,12 @@ import { useState } from 'react/cjs/react.development';
 export const PersonFind = () => {
 
 
-    // const [lastName, setLastName] = useState("");
-    // const [firstName, setFirstName] = useState("");
-    // const [fatherName, setFatherName] = useState("");
+  
     const [buffer,setBuffer] = useState("");
 
     const onFindSumbit = e => {
         e.preventDefault();
 
-        // if (!lastName) return;
-        // if (!firstName) return;
-        // if (!fatherName) return;
 
         
     }

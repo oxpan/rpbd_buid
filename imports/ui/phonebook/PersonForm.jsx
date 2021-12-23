@@ -77,7 +77,8 @@ export const PersonForm = () => {
 
 
     function filler(){
-        
+        var sessionDataToLog = Session.get('currentPerson');
+        // console.log(sessionDataToLog);
     }
 
     const ExecuteHandler = e => {
@@ -142,6 +143,20 @@ export const PersonForm = () => {
             </span>
         </div>
         <div>
+        <label>ФИО:</label>
+        <div>
+            <input type="text"
+            placeholder='lastname'
+            />
+            <input type="text"
+            placeholder='firstname'
+            />
+            <input type="text"
+            placeholder='fathername'
+            />
+
+        </div>
+
         <label>Данные адреса:</label>
             <div>
                 

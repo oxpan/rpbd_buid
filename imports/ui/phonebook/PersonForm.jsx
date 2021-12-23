@@ -28,9 +28,9 @@ export const PersonForm = () => {
         fatherName = re[2];
         
         IDcurrent = PhoneBook_Collection.insert({
-            lastname: lastName,
-            firstname: firstName,
-            fathername: fatherName
+            Lastname: lastName,
+            Firstname: firstName,
+            Fathername: fatherName
         });
 
         console.log(IDcurrent);
@@ -50,6 +50,7 @@ export const PersonForm = () => {
         Session.set('currentPerson', Person);
         // var sessionDataToLog = Session.get('currentPerson');
         // console.log(sessionDataToLog);
+        filler();
     }
 
     function Find(){
@@ -80,8 +81,16 @@ export const PersonForm = () => {
 
 
     function filler(){
+        var lastNOut = "";
+        var firsNOut = "";
+        var fatherNOut = "";
         var sessionDataToLog = Session.get('currentPerson');
         // console.log(sessionDataToLog);
+
+        lastn.value = sessionDataToLog.Lastname;
+        firstn.value = sessionDataToLog.Firstname;
+        fathern.value = sessionDataToLog.Fathername;
+
     }
 
     const ExecuteHandler = e => {
@@ -150,15 +159,18 @@ export const PersonForm = () => {
         <div>
             <input type="text"
             placeholder='lastname'
+            // value={lastNOut}
             id='lastn'
             />
             <input type="text"
             placeholder='firstname'
+            // value={firsNOut}
             id='firstn'
             />
             <input type="text"
             placeholder='fathername'
-            id='father'
+            // value={fatherNOut}
+            id='fathern'
             />
 
         </div>

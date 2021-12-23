@@ -15,25 +15,28 @@ export const PersonForm = () => {
 
 
     function Insert() {
+        let IDcurrent;
+
         const re = buffer.FIO.split(" ");
         if (re.length != 3 || re[2] === ""){
             console.log("Error!");
             return;
         }         
-        console.log(re);
+        // console.log(re);
         lastName = re[0];
         firstName = re[1];
         fatherName = re[2];
         
-        PhoneBook_Collection.insert({
+        IDcurrent = PhoneBook_Collection.insert({
             lastname: lastName,
             firstname: firstName,
             fathername: fatherName
         });
 
-
+        console.log(IDcurrent);
 
         var Person = {
+            _id:IDcurrent,
             Lastname: re[0],
             Firstname: re[1],
             Fathername: re[2],
@@ -147,12 +150,15 @@ export const PersonForm = () => {
         <div>
             <input type="text"
             placeholder='lastname'
+            id='lastn'
             />
             <input type="text"
             placeholder='firstname'
+            id='firstn'
             />
             <input type="text"
             placeholder='fathername'
+            id='father'
             />
 
         </div>
@@ -163,20 +169,17 @@ export const PersonForm = () => {
             <input 
                     type={"text"}
                     placeholder='street:'
-                    // value={buffer}
-                    // onChange={(e) => setBuffer(e.target.value)}
+                    
                     />
                 <input 
                     type={"number"}
                     placeholder='home:'
-                    // value={buffer}
-                    // onChange={(e) => setBuffer(e.target.value)}
+                    
                     />
                 <input 
                     type={"number"}
                     placeholder='apartment:'
-                    // value={buffer}
-                    // onChange={(e) => setBuffer(e.target.value)}
+                    
                     />
             </div>
             <label>Номера:</label>
@@ -184,8 +187,7 @@ export const PersonForm = () => {
             <input 
                 type={"text"}
                 placeholder='mobilePhone:'
-                // value={buffer}
-                // onChange={(e) => setBuffer(e.target.value)}
+                
                 />
             </div>
             <div>

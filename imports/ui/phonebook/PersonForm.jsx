@@ -169,17 +169,18 @@ export const PersonForm = () => {
             <input 
                     type={"text"}
                     placeholder='street:'
+                    id='street'
                     
                     />
                 <input 
                     type={"number"}
                     placeholder='home:'
-                    
+                    id='homeAddress'
                     />
                 <input 
                     type={"number"}
                     placeholder='apartment:'
-                    
+                    id='apartmentAddress'
                     />
             </div>
             <label>Номера:</label>
@@ -187,31 +188,29 @@ export const PersonForm = () => {
             <input 
                 type={"text"}
                 placeholder='mobilePhone:'
-                
+                id='mobileP'
                 />
             </div>
             <div>
             <input 
                 type={"text"}
                 placeholder='workPhone:'
-                // value={buffer}
-                // onChange={(e) => setBuffer(e.target.value)}
+                id='workP'
                 />
             </div>
             <div>
             <input 
                 type={"text"}
                 placeholder='homePhone:'
-                // value={buffer}
-                // onChange={(e) => setBuffer(e.target.value)}
+                id='homeP'
                 />
             </div>
             
         </div>
 
         <div>
-        <button >обновить</button>
-        <button >удалить</button>
+        <button  >обновить</button>
+        <button  >удалить</button>
         </div>
         <div>
             <p>tut vivod</p>

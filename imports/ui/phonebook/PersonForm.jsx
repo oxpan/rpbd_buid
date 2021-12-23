@@ -11,9 +11,6 @@ export const PersonForm = () => {
     let fatherName;
     const [buffer, setBuffer] = useState({FIO:"",phone:"",address:""});//Drop
     
-
-
-
     function Insert() {
         let IDcurrent;
         const re = fiopersone.value.split(" ");
@@ -160,7 +157,7 @@ export const PersonForm = () => {
 
     return (
         <div className="person-insert-form" >
-            <div className='person-form' /*onSubmit={onAddSumbit}*/>
+            <div className='person-form'>
                 <span className='span1' >
                     <form>
                         <input 

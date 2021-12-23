@@ -6,8 +6,8 @@ import { TestSession } from './phonebook/TestSession.jsx';
 export const App = () => (
   <div>
     <h1>PhoneBook:</h1>
-    <PersonForm/>
-    {/* <TestSession/> */}
+    {/* <PersonForm/> */}
+    <TestSession/>
 
   </div>
 );

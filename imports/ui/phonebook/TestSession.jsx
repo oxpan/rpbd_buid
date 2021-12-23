@@ -42,7 +42,13 @@ export const TestSession = () => {
         PhoneBook_Collection.insert({
             lastname: lastName,
             firstname: firstName,
-            fathername: fatherName
+            fathername: fatherName,
+            street: "",
+            apartment: "",
+            home: "",
+            mobilePhone: "",
+            workPhone: "",
+            homePhone: ""
         })
         // PhoneBook_Collection.addShard({
         //     lastname: lastName,

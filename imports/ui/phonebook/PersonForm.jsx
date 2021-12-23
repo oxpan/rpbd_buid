@@ -20,36 +20,35 @@ export const PersonForm = () => {
     const onAddSumbit = e => {
         e.preventDefault();
 
-        console.log(bufferPhone);
+        // console.log(bufferPhone);
 
         const re = buffer.split(" ");
-        const reA = bufferAddress.split(" ");
-        const reP = bufferPhone.split(" ");
+        // const reA = bufferAddress.split(" ");
+        // const reP = bufferPhone.split(" ");
         if (re.length != 3 || re[2] === ""){
             console.log("PersonError!");
             return;
         }         
-      
+
         PhoneBook_Collection.insert({
             lastname: re[0],
             firstname: re[1],
-            fathername: re[2],
-            home: "",
-            apartment: "",
-            street: "",
-            mobilePhone: "",
-            workPhone: "",
-            homePhone: ""
-        
-        })
+            fathername: re[2]
+            // home: "",
+            // apartment: "",
+            // street: "",
+            // mobilePhone: "",
+            // workPhone: "",
+            // homePhone: ""
+        });
         
     }
     return (
         
-        <form className="person-insert-form" >
+        <div className="person-insert-form" >
             
                 <div className='person-form' /*onSubmit={onAddSumbit}*/>
-                    {/* <span className='span1' onSubmit={onAddSumbit}> */}
+                    <span className='span1' >
                         {/* <div> */}
                         <form onSubmit={onAddSumbit}>
                     <input 
@@ -58,6 +57,7 @@ export const PersonForm = () => {
                         value={buffer.FIO}
                         onChange={(e) => setBuffer(e.target.value)}
                         />
+                        
                     <input
                         // title='формат ввода [T X(XXX)XXX-XX-XX] T: mobile, work, home'
                         type={"text"}
@@ -79,12 +79,14 @@ export const PersonForm = () => {
                         <label htmlFor="rad1">find</label>
                         <input name='radiob' type={"radio"} id='rad2'/>
                         <label htmlFor="rad2">create</label>
-                        <button type="submit">Исполнить</button>
+                        
                         {/* </div> */}
-                    {/* </span> */}
-                    </form>
+                        <button type="submit">Исполнить</button>
+                         </form>
+                    </span>
+                   
 
-                    
+
                     <span className='span2'> 
                         <div>
                             <button >ФИО список</button>
@@ -152,7 +154,7 @@ export const PersonForm = () => {
                 <div>
                     <p>tut vivod</p>
                 </div>
-        </form>
+        </div>
     );
     
 };

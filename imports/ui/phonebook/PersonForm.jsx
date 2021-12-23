@@ -54,6 +54,9 @@ export const PersonForm = () => {
     }
 
     function Find(){
+        let Tmp_Person;
+        var ObjectPerson = new Object();
+
         const fio_buff = buffer.FIO.split(" ");
         const address_buff = buffer.address.split(" ");
         const phone_buff = buffer.phone.split(" ");
@@ -70,8 +73,16 @@ export const PersonForm = () => {
             return;
         }
 
-        if(phone_buff[0] === "m"){
+        ObjectPerson.Lastname = fio_buff[0];
+        ObjectPerson.Firstname = fio_buff[1];
+        ObjectPerson.Fathername = fio_buff[2];
+        ObjectPerson.Street = address_buff[0];
+        ObjectPerson.Home = address_buff[1];
+        ObjectPerson.Appartement = address_buff[2];
 
+        if(phone_buff[0] === "m"){
+            ObjectPerson.MobilePhone = phone_buff[1];
+            Tmp_Person = PhoneBook_Collection.findOne(ObjectPerson);
         }else if (phone_buff[0] === "w"){
 
         }else {
@@ -90,6 +101,12 @@ export const PersonForm = () => {
         lastn.value = sessionDataToLog.Lastname;
         firstn.value = sessionDataToLog.Firstname;
         fathern.value = sessionDataToLog.Fathername;
+        streetAddress.value = sessionDataToLog.Street;
+        homeAddress.value = sessionDataToLog.Home;
+        apartmentAddress.value = sessionDataToLog.Appartement; 
+        mobileP.value = sessionDataToLog.MobilePhone;
+        workP.value = sessionDataToLog.WorkPhone;
+        homeP.value = sessionDataToLog.HomePhone;
 
     }
 
@@ -181,7 +198,7 @@ export const PersonForm = () => {
             <input 
                     type={"text"}
                     placeholder='street:'
-                    id='street'
+                    id='streetAddress'
                     
                     />
                 <input 

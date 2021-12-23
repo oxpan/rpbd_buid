@@ -99,6 +99,27 @@ export const PersonForm = () => {
         console.log(Tmp_Person);
     }
 
+    const reade = e => {
+        e.preventDefault();
+        console.log("read");
+
+    }
+    const remove = e => {
+        e.preventDefault();
+        console.log("remove");
+        var sessionDataToLog = Session.get('currentPerson');
+        PhoneBook_Collection.remove(sessionDataToLog._id);
+        lastn.value = "";
+        firstn.value = "";
+        fathern.value = ""; 
+        streetAddress.value = "";
+        homeAddress.value = "";
+        apartmentAddress.value = "";
+        mobileP.value = ""; 
+        workP.value = "";
+        homeP.value = "";
+
+    }
 
     function filler(){
         var lastNOut = "";
@@ -252,11 +273,11 @@ export const PersonForm = () => {
         </div>
 
         <div>
-        <button  >обновить</button>
-        <button  >удалить</button>
+        <button onClick={reade} >обновить</button>
+        <button onClick={remove} >удалить</button>
         </div>
         <div>
-            <p>tut vivod</p>
+            <p>FFFFFFFFFFFFFFFuckk</p>
         </div>
 </div>
     );

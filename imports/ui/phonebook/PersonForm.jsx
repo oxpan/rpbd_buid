@@ -32,6 +32,13 @@ export const PersonForm = () => {
             fathername: fatherName
         })
     }
+
+    function ExecuteHandler()
+    {
+        console.log(rad1.checked());
+        console.log(rad2.checked());
+    }
+
     return (
         
         <div className="person-insert-form" >
@@ -70,7 +77,7 @@ export const PersonForm = () => {
                 <label htmlFor="rad2">create</label>
                 
                 {/* </div> */}
-                <button type="submit">Исполнить</button>
+                <button type="submit" onClick={ExecuteHandler}>Исполнить</button>
                  </form>
             </span>
            

@@ -51,7 +51,7 @@ export const PersonForm = () => {
     function Find(){
         let Tmp_Person;
         var ObjectPerson = new Object();
-        console.log(fiopersone.value);
+        // console.log(fiopersone.value);
         const fio_buff = fiopersone.value.split(" ");
         const address_buff = addressa.value.split(" ");
         const phone_buff = phonenumber.value.split(" ");
@@ -85,14 +85,35 @@ export const PersonForm = () => {
             ObjectPerson.HomePhone = phone_buff[1];
             Tmp_Person = PhoneBook_Collection.findOne(ObjectPerson);
         }
+        
+        if(Tmp_Person === undefined){
+            console.log("undefined");
+        }else{
+            console.log(Tmp_Person);
+            var Person = {
+                _id: Tmp_Person._id,
+                Lastname: Tmp_Person.Lastname,
+                Firstname: Tmp_Person.Firstname,
+                Fathername: Tmp_Person.Fathername,
+                Home: Tmp_Person.Home,
+                Appartement: Tmp_Person.Appartement,
+                Street: Tmp_Person.Street,
+                MobilePhone: Tmp_Person.MobilePhone,
+                WorkPhone: Tmp_Person.WorkPhone,
+                HomePhone: Tmp_Person.HomePhone
+            }
+            console.log(Person);
+            Session.set('currentPerson', Person);
+            filler();
+        }
 
-        console.log(Tmp_Person);
     }
 
     const reade = e => {
         e.preventDefault();
         console.log("<reade>");
         var sessionDataToLog = Session.get('currentPerson');
+        if(sessionDataToLog === undefined) return;
         
         PhoneBook_Collection.update({"_id":sessionDataToLog._id},
                                             {"$set":{
@@ -113,6 +134,8 @@ export const PersonForm = () => {
         e.preventDefault();
         console.log("<remove>");
         var sessionDataToLog = Session.get('currentPerson');
+        if(sessionDataToLog === undefined) return;
+        
         PhoneBook_Collection.remove(sessionDataToLog._id);
         ClearTextFiler();
         console.log("</remove>");
@@ -265,7 +288,7 @@ export const PersonForm = () => {
                             id='addressa'
                             />
                
-                        <input name='radiob' type={"radio"} id='rad1'/>
+                        <input name='radiob' type={"radio"} id='rad1' checked/>
                         <label htmlFor="rad1">find</label>
                         <input name='radiob' type={"radio"} id='rad2'/>
                         <label htmlFor="rad2">create</label>

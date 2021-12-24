@@ -6,7 +6,7 @@ import { PersonForm } from './phonebook/PersonForm.jsx';
 
 export const App = () => (
   <div>
-    <h1>PhoneBook:</h1>
+    <header>PhoneBook</header>
 
 
     <PersonForm/>

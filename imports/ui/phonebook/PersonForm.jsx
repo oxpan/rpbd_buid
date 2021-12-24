@@ -12,6 +12,8 @@ export const PersonForm = () => {
     let fatherName;
     const [buffer, setBuffer] = useState({FIO:"",phone:"",address:""});//Drop
     
+    function err(){console.log("Error");}
+
     function Insert() {
         let IDcurrent;
         const re = fiopersone.value.split(" ");
@@ -27,7 +29,7 @@ export const PersonForm = () => {
             Lastname: lastName,
             Firstname: firstName,
             Fathername: fatherName
-        });
+        },err());
 
         console.log(IDcurrent);
 

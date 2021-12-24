@@ -3,6 +3,7 @@ import { useState } from 'react/cjs/react.development';
 import { PhoneBook_Collection } from '../../api/phonebook';
 import { Mongo } from 'meteor/mongo';
 import { Session } from 'meteor/session';
+import { render } from 'react-dom';
 
 export const PersonForm = () => {
 
@@ -42,6 +43,7 @@ export const PersonForm = () => {
             WorkPhone:"",
             HomePhone:""
         }
+
         Session.set('currentPerson', Person);
         filler();
     }
@@ -178,6 +180,90 @@ export const PersonForm = () => {
         }
     }
 
+        //пока что только ФИО
+        function PrintContact(props)
+        {
+            return(
+                    <li>
+                        <div>
+                            {props.Lastname} {props.Firstname} {props.Fathername}
+                        </div>
+                        <ul>
+                            <li>
+                                Мобильный телефон: {props.MobilePhone}
+                            </li>
+                            <li>
+                                Рабочий телефон: {props.WorkPhone}
+                            </li>
+                            <li>
+                                Домашний телефон: {props.HomePhone}
+                            </li>
+                        </ul>
+                    </li>
+            );
+        }
+        
+        function GenListContacts(props)
+        {
+            let elements = new Array();
+            
+            for(let i=0;i<props.length;i++)
+                elements.push(PrintContact(props[i]));
+            
+            return  elements;
+
+        }
+    
+        function FindFIOALL()
+        {
+            const re = fiopersone.value.split(" ");
+            if (re.length != 3 || re[2] === ""){
+                console.log("Error!");
+                return;
+            }            
+            
+            obj = new Object();
+            obj.Lastname = re[0];
+            obj.Firstname = re[1];
+            obj.Fathername = re[2];
+    
+            collection = PhoneBook_Collection.find(obj).fetch();
+
+            let res = GenListContacts(collection);
+            render(<ol>{res}</ol>, document.getElementById('out'));
+        }
+
+        function Find4Nums()
+        {
+            const phone_buff = phonenumber.value.split(" ");
+            
+            if (phone_buff.length != 2 || phone_buff[1] === ""){
+                console.log("phoneError!");
+                return;
+            }
+
+            let sz = phone_buff[1].length;
+            let d = phone_buff[1][sz-1];
+            let c = phone_buff[1][sz-2];
+            let b = phone_buff[1][sz-4];
+            let a = phone_buff[1][sz-5];
+
+            
+            var collection;
+            regStr = "[" + a + "][" + b + "]-[" + c + "]["+d +"]$";
+            
+            
+            if(phone_buff[0] === "m")
+                collection = PhoneBook_Collection.find({MobilePhone:{$regex:regStr}}).fetch();
+            else if (phone_buff[0] === "w")
+                collection = PhoneBook_Collection.find({WorkPhone:{$regex:regStr}}).fetch();
+            else 
+                collection = PhoneBook_Collection.find({HomePhone:{$regex:regStr}}).fetch();
+        
+            let res = GenListContacts(collection);
+            render(<ol>{res}</ol>, document.getElementById('out'));
+        }
+
     return (
         <div className="person-insert-form" >
             <div className='person-form'>
@@ -212,10 +298,10 @@ export const PersonForm = () => {
                 </span>
                 <span className='span2'> 
                     <div>
-                        <button >ФИО список</button>
+                        <button onClick={FindFIOALL} >ФИО список</button>
                     </div>
                     <div>
-                        <button >4 цифры</button>
+                        <button onClick={Find4Nums}>4 цифры</button>
                     </div>
                 </span>
             </div>
@@ -284,6 +370,7 @@ export const PersonForm = () => {
                 <button onClick={reade} >обновить</button>
                 <button onClick={remove} >удалить</button>
             </div>
+            <div id="out"></div>
         </div>
     );
 };

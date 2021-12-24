@@ -12,6 +12,8 @@ export const PersonForm = () => {
     let fatherName;
     const [buffer, setBuffer] = useState({FIO:"",phone:"",address:""});//Drop
     
+    
+
     function Insert() {
         let IDcurrent;
         const re = fiopersone.value.split(" ");
@@ -19,15 +21,13 @@ export const PersonForm = () => {
             console.log("Error!");
             return;
         }         
-        lastName = re[0];
-        firstName = re[1];
-        fatherName = re[2];
         
-        IDcurrent = PhoneBook_Collection.insert({
-            Lastname: lastName,
-            Firstname: firstName,
-            Fathername: fatherName
-        });
+        var obj = new Object();
+        obj.Lastname = re[0];
+        obj.Firstname = re[1];
+        obj.Fathername = re[2];
+
+        IDcurrent = PhoneBook_Collection.insert(obj);
 
         console.log(IDcurrent);
 
@@ -138,6 +138,7 @@ export const PersonForm = () => {
         
         PhoneBook_Collection.remove(sessionDataToLog._id);
         ClearTextFiler();
+        delete Session.keys["currentPerson"];
         console.log("</remove>");
     }
 
@@ -288,9 +289,11 @@ export const PersonForm = () => {
                             id='addressa'
                             />
                
-                        <input name='radiob' type={"radio"} id='rad1' checked/>
+
+                        <input name='radiob' type={"radio"} id='rad1' />
+
                         <label htmlFor="rad1">find</label>
-                        <input name='radiob' type={"radio"} id='rad2'/>
+                        <input name='radiob' type={"radio"} id='rad2'checked/>
                         <label htmlFor="rad2">create</label>
                 
                         <button type="submit" onClick={ExecuteHandler}>Исполнить</button>

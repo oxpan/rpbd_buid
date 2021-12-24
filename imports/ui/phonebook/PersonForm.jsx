@@ -206,11 +206,37 @@ export const PersonForm = () => {
     
             collection = PhoneBook_Collection.find(obj).fetch();
 
-            console.log(obj);
-            console.log(collection);
-    
-            //render(PrintContact(collection[0]),document.getElementById('out'));
+            let res = GenListContacts(collection);
+            render(<ol>{res}</ol>, document.getElementById('out'));
+        }
+
+        function Find4Nums()
+        {
+            const phone_buff = phonenumber.value.split(" ");
             
+            if (phone_buff.length != 2 || phone_buff[1] === ""){
+                console.log("phoneError!");
+                return;
+            }
+
+            let sz = phone_buff[1].length;
+            let d = phone_buff[1][sz-1];
+            let c = phone_buff[1][sz-2];
+            let b = phone_buff[1][sz-4];
+            let a = phone_buff[1][sz-5];
+
+            
+            var collection;
+            regStr = "[" + a + "][" + b + "]-[" + c + "]["+d +"]$";
+            
+            
+            if(phone_buff[0] === "m")
+                collection = PhoneBook_Collection.find({MobilePhone:{$regex:regStr}}).fetch();
+            else if (phone_buff[0] === "w")
+                collection = PhoneBook_Collection.find({WorkPhone:{$regex:regStr}}).fetch();
+            else 
+                collection = PhoneBook_Collection.find({HomePhone:{$regex:regStr}}).fetch();
+        
             let res = GenListContacts(collection);
             render(<ol>{res}</ol>, document.getElementById('out'));
         }
@@ -252,7 +278,7 @@ export const PersonForm = () => {
                         <button onClick={FindFIOALL} >ФИО список</button>
                     </div>
                     <div>
-                        <button >4 цифры</button>
+                        <button onClick={Find4Nums}>4 цифры</button>
                     </div>
                 </span>
             </div>

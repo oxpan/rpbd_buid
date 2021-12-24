@@ -289,7 +289,9 @@ export const PersonForm = () => {
                             id='addressa'
                             />
                
+
                         <input name='radiob' type={"radio"} id='rad1' />
+
                         <label htmlFor="rad1">find</label>
                         <input name='radiob' type={"radio"} id='rad2'checked/>
                         <label htmlFor="rad2">create</label>

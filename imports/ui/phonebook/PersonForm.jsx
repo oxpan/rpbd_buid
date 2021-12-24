@@ -12,7 +12,7 @@ export const PersonForm = () => {
     let fatherName;
     const [buffer, setBuffer] = useState({FIO:"",phone:"",address:""});//Drop
     
-    function err(){console.log("Error");}
+    function err(props){alert("Error"+props);}
 
     function Insert() {
         let IDcurrent;
@@ -21,15 +21,13 @@ export const PersonForm = () => {
             console.log("Error!");
             return;
         }         
-        lastName = re[0];
-        firstName = re[1];
-        fatherName = re[2];
         
-        IDcurrent = PhoneBook_Collection.insert({
-            Lastname: lastName,
-            Firstname: firstName,
-            Fathername: fatherName
-        },err());
+        var obj = new Object();
+        obj.Lastname = re[0];
+        obj.Firstname = re[1];
+        obj.Fathername = re[2];
+
+        IDcurrent = PhoneBook_Collection.insert(obj,err(obj));
 
         console.log(IDcurrent);
 

@@ -49,6 +49,9 @@ export const PersonForm = () => {
     }
 
     function Find(){
+        
+        isAressFIO = false;
+       
         let Tmp_Person;
         var ObjectPerson = new Object();
         // console.log(fiopersone.value);
@@ -59,22 +62,27 @@ export const PersonForm = () => {
             console.log("FIOError!");
             return;
         }
-        if (address_buff.length != 3 || address_buff[2] === ""){
-            console.log("addressError!");
-            return;
-        }
+        // if (address_buff.length != 3 || address_buff[2] === ""){
+        //     console.log("addressError!");
+        //     return;
+        // }
         if (phone_buff.length != 2 || phone_buff[1] === ""){
             console.log("phoneError!");
             return;
         }
-
+        
         ObjectPerson.Lastname = fio_buff[0];
         ObjectPerson.Firstname = fio_buff[1];
         ObjectPerson.Fathername = fio_buff[2];
-        ObjectPerson.Street = address_buff[0];
-        ObjectPerson.Home = address_buff[1];
-        ObjectPerson.Appartement = address_buff[2];
-
+        
+        if(address_buff.length === 3){
+            console.log("aaaaaa");
+            ObjectPerson.Street = address_buff[0];
+            ObjectPerson.Home = address_buff[1];
+            ObjectPerson.Appartement = address_buff[2];
+            isAressFIO = true
+        }
+        
         if(phone_buff[0] === "m"){
             ObjectPerson.MobilePhone = phone_buff[1];
             Tmp_Person = PhoneBook_Collection.findOne(ObjectPerson);
